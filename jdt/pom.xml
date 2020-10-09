@@ -19,6 +19,10 @@
         <version>3.22.0</version>
         <exclusions>
           <exclusion>
+            <groupId>org.eclipse.jdt</groupId>
+            <artifactId>org.eclipse.jdt.core.dom</artifactId>
+          </exclusion>
+          <exclusion>
             <groupId>org.eclipse.platform</groupId>
             <artifactId>org.eclipse.core.filesystem</artifactId>
           </exclusion>

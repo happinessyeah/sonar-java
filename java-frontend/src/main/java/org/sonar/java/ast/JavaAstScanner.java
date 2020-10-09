@@ -23,10 +23,12 @@ import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Throwables;
 import com.google.common.collect.Iterables;
 import com.sonar.sslr.api.RecognitionException;
+
 import java.io.InterruptedIOException;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import javax.annotation.Nullable;
+
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.utils.log.Logger;
 import org.sonar.api.utils.log.Loggers;
@@ -89,25 +91,32 @@ public class JavaAstScanner {
       } else {
         version = Integer.toString(visitor.getJavaVersion().asInt());
       }
+      System.out.println("开始生成ast:");
       Tree ast = JParser.parse(
         version,
         inputFile.filename(),
         fileContent,
         visitor.getClasspath()
       );
+      System.out.println("生成的ast是:" + ast);
       visitor.visitFile(ast);
     } catch (RecognitionException e) {
+      System.out.println("error1");
       checkInterrupted(e);
       LOG.error(String.format("Unable to parse source file : '%s'", inputFile));
       LOG.error(e.getMessage());
 
       parseErrorWalkAndVisit(e, inputFile);
     } catch (AnalysisException e) {
+      System.out.println("error2");
       throw e;
     } catch (Exception e) {
+//      System.out.println("error3");
+      e.printStackTrace();
       checkInterrupted(e);
       interruptIfFailFast(e, inputFile);
     } catch (StackOverflowError error) {
+      System.out.println("error4");
       LOG.error(String.format("A stack overflow error occurred while analyzing file: '%s'", inputFile), error);
       throw error;
     }

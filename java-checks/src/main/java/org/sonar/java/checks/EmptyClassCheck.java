@@ -30,11 +30,20 @@ import java.util.List;
 
 @Rule(key = "S2094")
 public class EmptyClassCheck extends IssuableSubscriptionVisitor {
+  /**
+   * 指定要扫描的节点 (也就是树的分支)，并在 visitNode 方法中获取到指定的节点，像上面代码就是返回 Tree 中的所有 ClassTree
+   * @return
+   */
   @Override
   public List<Tree.Kind> nodesToVisit() {
     return Collections.singletonList(Tree.Kind.CLASS);
   }
 
+
+  /**
+   * 获取到 nodesToVisit 中的过滤后的所有节点 Tree，并且按照用户指定的逻辑进行校验
+   * @param tree
+   */
   @Override
   public void visitNode(Tree tree) {
     ClassTree classTree = (ClassTree) tree;
