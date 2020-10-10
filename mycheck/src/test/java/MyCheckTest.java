@@ -33,7 +33,7 @@ public class MyCheckTest {
     // In the test file, lines which should raise an issue have been commented out
     // by using the following syntax: "// Noncompliant {{EXPECTED_MESSAGE}}"
     JavaCheckVerifier.newVerifier()
-      .onFile("src/test/files/AvoidAnnotationCheck2.java")
+      .onFile("src/test/files/Tree.java")
       .withCheck(check)
       .verifyIssues();
   }
