@@ -29,12 +29,28 @@
       <version>6.8.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
-      <dependency>
-          <groupId>org.sonarsource.java</groupId>
-          <artifactId>java-checks</artifactId>
-          <version>6.8.0-SNAPSHOT</version>
-          <scope>compile</scope>
-      </dependency>
+    <dependency>
+      <groupId>org.sonarsource.java</groupId>
+      <artifactId>java-checks</artifactId>
+      <version>6.8.0-SNAPSHOT</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-core</artifactId>
+      <version>9.0.38</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.9.4</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.okhttp3</groupId>
+      <artifactId>okhttp</artifactId>
+      <version>3.14.9</version>
+    </dependency>
 
   </dependencies>
 

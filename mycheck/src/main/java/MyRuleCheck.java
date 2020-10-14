@@ -24,8 +24,6 @@ import org.sonar.plugins.java.api.JavaFileScannerContext;
 import org.sonar.plugins.java.api.semantic.MethodMatchers;
 import org.sonar.plugins.java.api.tree.BaseTreeVisitor;
 import org.sonar.plugins.java.api.tree.BlockTree;
-import org.sonar.plugins.java.api.tree.ExpressionTree;
-import org.sonar.plugins.java.api.tree.ImportTree;
 import org.sonar.plugins.java.api.tree.MethodInvocationTree;
 import org.sonar.plugins.java.api.tree.MethodTree;
 import org.sonar.plugins.java.api.tree.Tree;
@@ -61,18 +59,15 @@ public class MyRuleCheck extends BaseTreeVisitor implements JavaFileScanner {
   }
 
 
-  @Override
-  public void visitImport(ImportTree tree) {
-    System.out.println("------------------------------");
-    System.out.println("进入visitImport方法...");
-    // 获取import的内容
-    String fullyQualifiedName = ExpressionsHelper.concatenate((ExpressionTree) tree.qualifiedIdentifier());
-//    SyntaxToken syntaxToken = tree.semicolonToken();
-//    String text = syntaxToken.text();
-//    int line = syntaxToken.line();
-    System.out.println("import的内容如下：" + fullyQualifiedName);
-    super.visitImport(tree);
-  }
+//  @Override
+//  public void visitImport(ImportTree tree) {
+//    System.out.println("------------------------------");
+//    System.out.println("进入visitImport方法...");
+//    // 获取import的内容
+//    String fullyQualifiedName = ExpressionsHelper.concatenate((ExpressionTree) tree.qualifiedIdentifier());
+//    System.out.println("import的内容如下：" + fullyQualifiedName);
+//    super.visitImport(tree);
+//  }
 
 
   private static final MethodMatchers TEST_METHOD = MethodMatchers.create()
