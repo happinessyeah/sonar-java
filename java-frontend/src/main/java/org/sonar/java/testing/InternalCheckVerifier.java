@@ -25,6 +25,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multiset;
 import com.sonar.sslr.api.RecognitionException;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import javax.annotation.Nullable;
+
 import org.sonar.api.batch.fs.InputFile;
 import org.sonar.api.batch.fs.internal.TestInputFileBuilder;
 import org.sonar.api.batch.sensor.internal.SensorContextTester;
@@ -210,6 +212,7 @@ public class InternalCheckVerifier implements CheckVerifier {
     if (withoutSemantic) {
       visitorsBridge = new VisitorsBridgeForTests(visitors, sonarComponents);
     } else {
+      //这里默认设置了环境变量为/target/test-classes，导致程序实际运行时报错(如果要自定义指定classpath,需要在发起check时增加withClasspath())
       List<File> actualClasspath = classpath == null ? DEFAULT_CLASSPATH : classpath;
       visitorsBridge = new VisitorsBridgeForTests(visitors, actualClasspath, sonarComponents);
     }
@@ -220,7 +223,8 @@ public class InternalCheckVerifier implements CheckVerifier {
     astScanner.scan(files);
 
     VisitorsBridgeForTests.TestJavaFileScannerContext testJavaFileScannerContext = visitorsBridge.lastCreatedTestContext();
-//    checkIssues(testJavaFileScannerContext.getIssues());
+    //我们不需要校验issues
+    //    checkIssues(testJavaFileScannerContext.getIssues());
   }
 
   private void checkIssues(Set<AnalyzerMessage> issues) {
